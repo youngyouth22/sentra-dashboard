@@ -1,0 +1,2131 @@
+{
+"openapi": "3.0.3",
+"info": {
+"title": "SENTRA Trust Scoring & Identity Gateway",
+"description": "SENTRA is an AI-driven trust scoring engine that leverages the Nokia Network-as-Code Nexus and collective intelligence to prevent fintech fraud. This API provides real-time network signals, transaction security, and silent authentication.",
+"version": "1.0.0",
+"contact": {
+"name": "Sentra Security Team",
+"url": "https://sentra.io",
+"email": "security@sentra.io"
+}
+},
+"components": {
+"schemas": {
+"ErrorResponse": {
+"type": "object",
+"properties": {
+"statusCode": {
+"type": "integer",
+"example": 400
+},
+"code": {
+"type": "string",
+"example": "validation_failed"
+},
+"message": {
+"type": "string",
+"example": "Validation failed"
+},
+"details": {
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"path": {
+"type": "string"
+},
+"message": {
+"type": "string"
+}
+}
+}
+},
+"referenceId": {
+"type": "string",
+"example": "req-12345"
+}
+},
+"required": [
+"statusCode",
+"code",
+"message",
+"referenceId"
+]
+},
+"def-0": {
+"type": "object",
+"properties": {
+"statusCode": {
+"type": "integer",
+"example": 400
+},
+"code": {
+"type": "string",
+"example": "validation_failed"
+},
+"message": {
+"type": "string",
+"example": "Validation failed"
+},
+"details": {
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"path": {
+"type": "string"
+},
+"message": {
+"type": "string"
+}
+}
+}
+},
+"referenceId": {
+"type": "string",
+"example": "req-12345"
+}
+},
+"required": [
+"statusCode",
+"code",
+"message",
+"referenceId"
+],
+"title": "ErrorResponse"
+}
+},
+"securitySchemes": {
+"apiKey": {
+"type": "apiKey",
+"name": "x-api-key",
+"in": "header"
+},
+"bearerAuth": {
+"type": "http",
+"scheme": "bearer",
+"bearerFormat": "JWT"
+}
+}
+},
+"paths": {
+"/health": {
+"get": {
+"tags": [
+"System"
+],
+"description": "Check API health and status",
+"responses": {
+"200": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"status": {
+"type": "string"
+},
+"environment": {
+"type": "string"
+},
+"uptime": {
+"type": "number"
+},
+"timestamp": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/": {
+"get": {
+"responses": {
+"200": {
+"description": "Default Response"
+}
+}
+}
+},
+"/v1/analytics/usage": {
+"get": {
+"tags": [
+"Analytics"
+],
+"description": "Get API usage analytics and billing summary",
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"200": {
+"description": "Usage summary",
+"content": {
+"application/json": {
+"schema": {
+"description": "Usage summary",
+"type": "object",
+"properties": {
+"totalRequests": {
+"type": "number"
+},
+"successCount": {
+"type": "number"
+},
+"errorCount": {
+"type": "number"
+},
+"avgResponseTime": {
+"type": "number"
+},
+"requestsByEndpoint": {
+"type": "object",
+"additionalProperties": {
+"type": "number"
+}
+},
+"lastRequests": {
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"endpoint": {
+"type": "string"
+},
+"statusCode": {
+"type": "number"
+},
+"responseTime": {
+"type": "number"
+},
+"createdAt": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/api-keys": {
+"post": {
+"tags": [
+"API Management"
+],
+"description": "Generate a new API key",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string"
+}
+},
+"required": [
+"name"
+]
+}
+}
+}
+},
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"201": {
+"description": "API key created",
+"content": {
+"application/json": {
+"schema": {
+"description": "API key created",
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"rawKey": {
+"type": "string"
+},
+"createdAt": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+},
+"get": {
+"tags": [
+"API Management"
+],
+"description": "List all API keys for the authenticated user",
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"200": {
+"description": "List of API keys",
+"content": {
+"application/json": {
+"schema": {
+"description": "List of API keys",
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"createdAt": {
+"type": "string"
+},
+"lastUsedAt": {
+"type": "string",
+"nullable": true
+}
+}
+}
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/api-keys/{id}": {
+"delete": {
+"tags": [
+"API Management"
+],
+"description": "Revoke an API key",
+"parameters": [
+{
+"schema": {
+"type": "string"
+},
+"in": "path",
+"name": "id",
+"required": true
+}
+],
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"204": {
+"description": "Default Response"
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"404": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/auth/silent-verify": {
+"post": {
+"tags": [
+"Auth"
+],
+"description": "Verify phone number silently using network tokens (requires API key)",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"token": {
+"type": "string",
+"maxLength": 2048
+}
+},
+"required": [
+"token"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Verification successful",
+"content": {
+"application/json": {
+"schema": {
+"description": "Verification successful",
+"type": "object",
+"properties": {
+"verified": {
+"type": "boolean"
+},
+"phoneNumber": {
+"type": "string"
+},
+"network": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/auth/device-bind": {
+"post": {
+"tags": [
+"Auth"
+],
+"description": "Bind a device ID to a phone number (requires API key)",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"deviceId": {
+"type": "string",
+"maxLength": 256
+},
+"phoneNumber": {
+"type": "string"
+}
+},
+"required": [
+"deviceId",
+"phoneNumber"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Device bound successfully",
+"content": {
+"application/json": {
+"schema": {
+"description": "Device bound successfully",
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"deviceId": {
+"type": "string"
+},
+"status": {
+"type": "string",
+"enum": [
+"ACTIVE",
+"PENDING"
+]
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/escrow/create": {
+"post": {
+"tags": [
+"Escrow"
+],
+"description": "Create a new escrow transaction with idempotency support",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"senderPhone": {
+"type": "string"
+},
+"receiverPhone": {
+"type": "string"
+},
+"amount": {
+"type": "number",
+"minimum": 0.01,
+"maximum": 1000000
+}
+},
+"required": [
+"senderPhone",
+"receiverPhone",
+"amount"
+]
+}
+}
+}
+},
+"parameters": [
+{
+"schema": {
+"type": "string"
+},
+"in": "header",
+"name": "x-idempotency-key",
+"required": false
+}
+],
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"201": {
+"description": "Escrow created successfully",
+"content": {
+"application/json": {
+"schema": {
+"description": "Escrow created successfully",
+"type": "object",
+"properties": {
+"escrowId": {
+"type": "string"
+},
+"status": {
+"type": "string",
+"enum": [
+"CREATED",
+"FAILED"
+]
+},
+"amount": {
+"type": "number"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/escrow/release": {
+"post": {
+"tags": [
+"Escrow"
+],
+"description": "Release funds from an existing escrow",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"escrowId": {
+"type": "string",
+"format": "uuid"
+}
+},
+"required": [
+"escrowId"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Escrow released successfully",
+"content": {
+"application/json": {
+"schema": {
+"description": "Escrow released successfully",
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"transactionId": {
+"type": "string"
+},
+"status": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"404": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/keys": {
+"post": {
+"tags": [
+"Key Management"
+],
+"description": "Create a new programmatic API key",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"name": {
+"type": "string",
+"maxLength": 50
+}
+},
+"required": [
+"name"
+]
+}
+}
+}
+},
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"201": {
+"description": "API key created",
+"content": {
+"application/json": {
+"schema": {
+"description": "API key created",
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"rawKey": {
+"type": "string"
+},
+"createdAt": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+},
+"get": {
+"tags": [
+"Key Management"
+],
+"description": "List all active API keys",
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"200": {
+"description": "List of API keys",
+"content": {
+"application/json": {
+"schema": {
+"description": "List of API keys",
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"name": {
+"type": "string"
+},
+"createdAt": {
+"type": "string"
+},
+"lastUsedAt": {
+"type": "string",
+"nullable": true
+}
+}
+}
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/keys/{id}": {
+"delete": {
+"tags": [
+"Key Management"
+],
+"description": "Revoke an API key",
+"parameters": [
+{
+"schema": {
+"type": "string",
+"format": "uuid"
+},
+"in": "path",
+"name": "id",
+"required": true
+}
+],
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"204": {
+"description": "Default Response"
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"404": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/kyc/check": {
+"post": {
+"tags": [
+"KYC"
+],
+"description": "Verify identity using network-provided KYC data",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string"
+},
+"idNumber": {
+"type": "string"
+},
+"fullName": {
+"type": "string"
+}
+},
+"required": [
+"phoneNumber"
+]
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "KYC Check result",
+"content": {
+"application/json": {
+"schema": {
+"description": "KYC Check result",
+"type": "object",
+"properties": {
+"match": {
+"type": "boolean"
+},
+"matchScore": {
+"type": "number"
+},
+"mismatchedFields": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/kyc/auto-fill": {
+"get": {
+"tags": [
+"KYC"
+],
+"description": "Automatically retrieve user profile data from network operator",
+"parameters": [
+{
+"schema": {
+"type": "string"
+},
+"in": "query",
+"name": "phoneNumber",
+"required": true
+}
+],
+"responses": {
+"200": {
+"description": "Auto-fill data",
+"content": {
+"application/json": {
+"schema": {
+"description": "Auto-fill data",
+"type": "object",
+"properties": {
+"fullName": {
+"type": "string"
+},
+"address": {
+"type": "string"
+},
+"dateOfBirth": {
+"type": "string"
+},
+"status": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"404": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/security/pre-auth-check": {
+"post": {
+"tags": [
+"Security"
+],
+"description": "Perform security risk assessment before authorizing an action",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string"
+},
+"transactionAmount": {
+"type": "number"
+}
+},
+"required": [
+"phoneNumber"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Risk assessment result",
+"content": {
+"application/json": {
+"schema": {
+"description": "Risk assessment result",
+"type": "object",
+"properties": {
+"riskScore": {
+"type": "number"
+},
+"authorized": {
+"type": "boolean"
+},
+"reasons": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/security/geofence": {
+"post": {
+"tags": [
+"Security"
+],
+"description": "Verify if a device is within a specific geographic area",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string"
+},
+"latitude": {
+"type": "number",
+"minimum": -90,
+"maximum": 90
+},
+"longitude": {
+"type": "number",
+"minimum": -180,
+"maximum": 180
+},
+"radius": {
+"type": "number",
+"minimum": 100,
+"maximum": 50000
+}
+},
+"required": [
+"phoneNumber",
+"latitude",
+"longitude"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Geofence check result",
+"content": {
+"application/json": {
+"schema": {
+"description": "Geofence check result",
+"type": "object",
+"properties": {
+"withinArea": {
+"type": "boolean"
+},
+"distanceFromCenter": {
+"type": "number"
+},
+"error": {
+"type": "string",
+"nullable": true
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/transaction/initiate": {
+"post": {
+"tags": [
+"Transaction"
+],
+"description": "Initiate a new trust-scored transaction with idempotency support",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string"
+},
+"amount": {
+"type": "number"
+}
+},
+"required": [
+"phoneNumber",
+"amount"
+]
+}
+}
+}
+},
+"parameters": [
+{
+"schema": {
+"type": "string"
+},
+"in": "header",
+"name": "x-idempotency-key",
+"required": false
+}
+],
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Transaction initiation result",
+"content": {
+"application/json": {
+"schema": {
+"description": "Transaction initiation result",
+"type": "object",
+"properties": {
+"transactionId": {
+"type": "string"
+},
+"status": {
+"type": "string",
+"enum": [
+"APPROVED",
+"BLOCKED",
+"PENDING_CHALLENGE"
+]
+},
+"trustScore": {
+"type": "number"
+},
+"requiresChallenge": {
+"type": "boolean"
+},
+"reason": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"429": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/trust/evaluate": {
+"post": {
+"tags": [
+"Trust"
+],
+"description": "Evaluate the trust score of a phone number using network signals and collective nexus intelligence",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string",
+"pattern": "^\\+[1-9]\\d{1,14}$",
+"description": "E.164 format phone number (e.g. +33612345678)"
+}
+},
+"required": [
+"phoneNumber"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Trust evaluation result",
+"content": {
+"application/json": {
+"schema": {
+"description": "Trust evaluation result",
+"type": "object",
+"properties": {
+"trustScore": {
+"type": "number"
+},
+"riskLevel": {
+"type": "string",
+"enum": [
+"low",
+"medium",
+"high"
+]
+},
+"decision": {
+"type": "string",
+"enum": [
+"ALLOW",
+"STEP_UP_AUTH",
+"BLOCK"
+]
+},
+"signals": {
+"type": "object",
+"additionalProperties": true
+},
+"reasons": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"429": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/trust/report-fraud": {
+"post": {
+"tags": [
+"Trust"
+],
+"description": "Report a confirmed fraud incident to the collective intelligence network",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"phoneNumber": {
+"type": "string"
+},
+"type": {
+"type": "string",
+"enum": [
+"account_takeover",
+"scam",
+"payment_fraud",
+"identity_theft"
+]
+},
+"severity": {
+"type": "integer",
+"minimum": 1,
+"maximum": 5
+},
+"description": {
+"type": "string",
+"maxLength": 1000
+}
+},
+"required": [
+"phoneNumber",
+"type",
+"severity"
+]
+}
+}
+}
+},
+"security": [
+{
+"apiKey": []
+}
+],
+"responses": {
+"200": {
+"description": "Fraud report processed",
+"content": {
+"application/json": {
+"schema": {
+"description": "Fraud report processed",
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"message": {
+"type": "string"
+},
+"reportId": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"403": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"404": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"429": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/webhooks/endpoints": {
+"post": {
+"tags": [
+"API Management"
+],
+"description": "Register a new webhook endpoint for event notifications",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"url": {
+"type": "string",
+"format": "uri"
+},
+"events": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+},
+"required": [
+"url"
+]
+}
+}
+}
+},
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"201": {
+"description": "Webhook registered",
+"content": {
+"application/json": {
+"schema": {
+"description": "Webhook registered",
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"url": {
+"type": "string"
+},
+"events": {
+"type": "array",
+"items": {
+"type": "string"
+}
+},
+"signing_secret": {
+"type": "string"
+}
+}
+}
+}
+}
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+},
+"get": {
+"tags": [
+"API Management"
+],
+"description": "List all webhook endpoints for the authenticated user",
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"200": {
+"description": "List of webhooks",
+"content": {
+"application/json": {
+"schema": {
+"description": "List of webhooks",
+"type": "array",
+"items": {
+"type": "object",
+"properties": {
+"id": {
+"type": "string"
+},
+"url": {
+"type": "string"
+},
+"events": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+}
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+},
+"/v1/webhooks/endpoints/{id}": {
+"delete": {
+"tags": [
+"API Management"
+],
+"description": "Delete a webhook endpoint",
+"parameters": [
+{
+"schema": {
+"type": "string",
+"format": "uuid"
+},
+"in": "path",
+"name": "id",
+"required": true
+}
+],
+"security": [
+{
+"bearerAuth": []
+}
+],
+"responses": {
+"204": {
+"description": "Default Response"
+},
+"400": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"401": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+},
+"500": {
+"description": "Default Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/def-0"
+}
+}
+}
+}
+}
+}
+}
+},
+"servers": [
+{
+"url": "https://sentra-gateway.onrender.com",
+"description": "Development server"
+}
+],
+"tags": [
+{
+"name": "Trust",
+"description": "Trust scoring endpoints"
+},
+{
+"name": "Transaction",
+"description": "Transaction management"
+},
+{
+"name": "Auth",
+"description": "Authentication endpoints"
+},
+{
+"name": "KYC",
+"description": "Know Your Customer"
+},
+{
+"name": "Security",
+"description": "Security checks"
+},
+{
+"name": "Escrow",
+"description": "Escrow services"
+},
+{
+"name": "API Management",
+"description": "API Key management"
+},
+{
+"name": "Analytics",
+"description": "Usage analytics"
+}
+],
+"externalDocs": {
+"url": "https://docs.sentra.io",
+"description": "Find more info here"
+}
+}
