@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { type User } from '../../domain/entities/user.entity';
 import { LoginUseCase } from '../../domain/usecases/login.usecase';
-import { AuthRepositoryImpl } from '../../data/repositories/auth.repository_impl';
+import { SupabaseAuthRepository } from '../../data/repositories/SupabaseAuthRepository';
 
-// In a real enterprise app, you would use Dependency Injection (e.g., Inversify) 
-// or a Service Locator to get these instances.
-const authRepository = new AuthRepositoryImpl();
+const authRepository = new SupabaseAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
 
 export const useAuth = () => {
@@ -19,10 +17,10 @@ export const useAuth = () => {
 
     const result = await loginUseCase.execute({ email, password });
 
-    if (result.type === 'right') {
-      setUser(result.value);
-    } else {
-      setError(result.value.message);
+    if (result.right) {
+      setUser(result.right);
+    } else if (result.left) {
+      setError(result.left.message);
     }
 
     setIsLoading(false);

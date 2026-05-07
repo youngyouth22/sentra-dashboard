@@ -4,7 +4,7 @@ import { RoutePaths } from "./route-paths";
 import { supabase } from "@/lib/supabase";
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   redirectTo?: string;
 }
 

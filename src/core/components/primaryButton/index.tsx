@@ -5,6 +5,7 @@ import { Spinner } from "@/components/ui/spinner"
 interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     loading?: boolean;
+    size?: string;
 }
 
 export default function PrimaryButton({ children, className, loading, ...props }: PrimaryButtonProps) {

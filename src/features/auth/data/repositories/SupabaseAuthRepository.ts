@@ -3,6 +3,10 @@ import { AuthRepository } from "../../domain/repositories/AuthRepository";
 import { type User } from "@supabase/supabase-js";
 
 export class SupabaseAuthRepository extends AuthRepository {
+  async login(email: string, password: string): Promise<{ user: User | null; error: Error | null }> {
+    return this.signIn(email, password);
+  }
+
   async signIn(email: string, password: string): Promise<{ user: User | null; error: Error | null }> {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,

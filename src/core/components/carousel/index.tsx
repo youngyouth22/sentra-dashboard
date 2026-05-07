@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
-import Icons from "@/components/icon";
-import Typography from "../typography";
+import Icons from "@/core/components/icon";
+import Typography from "@/core/typography";
 
 export type member = {
     name: string;
