@@ -14,6 +14,7 @@ export default function AuthPage() {
             <Link to="/" className="flex items-center gap-2">
              <Image src={LogoBlack} alt="Sentra Logo" />
             </Link>
+            
             <a 
               href="#" 
               className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors"
