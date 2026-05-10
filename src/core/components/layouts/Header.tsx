@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import gsap from "gsap";
 import Image from "@/core/components/image";
 import Navigation from "@/core/components/layouts/Navigation";
-import Logo from '@/assets/images/Logo.svg';
+import Logo from '@/assets/images/logo.svg';
 import Switch from "@/core/components/switch";
 import Icons from "@/core/components/icon";
 import { RoutePaths } from "@/core/routes/route-paths";

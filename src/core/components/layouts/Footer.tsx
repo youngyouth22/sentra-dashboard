@@ -3,10 +3,10 @@ import Image from "@/core/components/image";
 import Button from "@/core/components/button";
 import { RoutePaths } from "@/core/routes/route-paths";
 
-import Logo from '@/assets/images/Logo.svg';
-import XLogo from '@/assets/images/XLogo.svg';
-import InstagramLogo from '@/assets/images/InstagramLogo.svg';
-import LinkedinLogo from '@/assets/images/LinkedinLogo.svg';
+import Logo from '@/assets/images/logo.svg';
+import XLogo from '@/assets/images/x-logo.svg';
+import InstagramLogo from '@/assets/images/instagram-logo.svg';
+import LinkedinLogo from '@/assets/images/linkedin-logo.svg';
 import Icons from "@/core/components/icon";
 
 export default function Footer() {

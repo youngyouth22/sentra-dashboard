@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ApiDocsUrl, GatewayBaseUrl } from '@/core/api/endpoints';
 import { RoutePaths } from '@/core/routes/route-paths';
 import { useTheme } from '@/core/context/ThemeProvider';
-import Logo from '@/assets/images/Logo.svg';
+import Logo from '@/assets/images/logo.svg';
 import ErrorHero from '@/core/components/errorPage/Hero';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
