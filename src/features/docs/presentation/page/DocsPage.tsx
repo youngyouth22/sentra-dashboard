@@ -4,6 +4,7 @@ import { ApiDocsUrl, GatewayBaseUrl } from '@/core/api/endpoints';
 import { RoutePaths } from '@/core/routes/route-paths';
 import { useTheme } from '@/core/context/ThemeProvider';
 import Logo from '@/assets/images/Logo.svg';
+import ErrorHero from '@/core/components/errorPage/Hero';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 declare global {
@@ -14,71 +15,74 @@ declare global {
 }
 
 // ─── Theme tokens ─────────────────────────────────────────────────────────────
+// ─── Theme tokens ─────────────────────────────────────────────────────────────
 const DARK: Record<string, string> = {
-  bg: '#0a0a0b',
-  headerBg: 'rgba(10,10,11,0.85)',
-  headerBorder: '#1f1f23',
-  sep: '#3f3f46',
-  textPrimary: '#f4f4f5',
-  textSecondary: '#71717a',
-  sidebarBg: '#0a0a0b',
+  bg: '#000000',
+  headerBg: 'rgba(0,0,0,0.85)',
+  headerBorder: '#18181b',
+  sep: '#27272a',
+  textPrimary: '#fafafa',
+  textSecondary: '#a1a1aa',
+  sidebarBg: '#000000',
   sidebarText: '#a1a1aa',
-  sidebarActiveText: '#f4f4f5',
-  sidebarActiveBg: '#1a1a1e',
-  rightPanel: '#0d0d10',
-  codeBg: '#111113',
+  sidebarActiveText: '#ffffff',
+  sidebarActiveBg: '#18181b',
+  rightPanel: '#09090b',
+  codeBg: '#09090b',
   codeColor: '#e4e4e7',
-  nestedBg: '#111113',
-  border: '#27272a',
-  typeColor: '#873AE3',
-  titleColor: '#a1a1aa',
+  nestedBg: '#09090b',
+  border: '#18181b',
+  typeColor: '#a1a1aa',
+  titleColor: '#71717a',
   rSuccess: '#022c22', rError: '#2c0707',
-  rRedirect: '#2c2007', rInfo: '#1a0c2e',
+  rRedirect: '#2c2007', rInfo: '#18181b',
 };
 
 const LIGHT: Record<string, string> = {
   bg: '#ffffff',
   headerBg: 'rgba(255,255,255,0.90)',
   headerBorder: '#e4e4e7',
-  sep: '#d4d4d8',
-  textPrimary: '#09090b',
-  textSecondary: '#71717a',
-  sidebarBg: '#f9f9fb',
+  sep: '#e4e4e7',
+  textPrimary: '#000000',
+  textSecondary: '#52525b',
+  sidebarBg: '#ffffff',
   sidebarText: '#52525b',
-  sidebarActiveText: '#09090b',
-  sidebarActiveBg: '#ede9fe',
-  rightPanel: '#f4f4f5',
+  sidebarActiveText: '#000000',
+  sidebarActiveBg: '#f4f4f5',
+  rightPanel: '#fafafa',
   codeBg: '#f4f4f5',
-  codeColor: '#3f3f46',
-  nestedBg: '#f9f9fb',
+  codeColor: '#18181b',
+  nestedBg: '#fafafa',
   border: '#e4e4e7',
-  typeColor: '#7c3aed',
-  titleColor: '#52525b',
+  typeColor: '#52525b',
+  titleColor: '#71717a',
   rSuccess: '#f0fdf4', rError: '#fef2f2',
-  rRedirect: '#fffbeb', rInfo: '#faf5ff',
+  rRedirect: '#fffbeb', rInfo: '#f4f4f5',
 };
 
 function buildRedocOptions(dark: boolean) {
   const t = dark ? DARK : LIGHT;
+  const primaryColor = dark ? '#ffffff' : '#000000';
+
   return {
     theme: {
       colors: {
-        primary: { main: '#873AE3' },
-        success: { main: '#22d3a5' },
+        primary: { main: primaryColor },
+        success: { main: '#10b981' },
         warning: { main: '#f59e0b' },
         error:   { main: '#ef4444' },
         text:    { primary: t.textPrimary, secondary: t.textSecondary },
         border:  { dark: t.border, light: t.border },
         responses: {
-          success:  { color: '#22d3a5', backgroundColor: t.rSuccess },
+          success:  { color: '#10b981', backgroundColor: t.rSuccess },
           error:    { color: '#ef4444', backgroundColor: t.rError },
           redirect: { color: '#f59e0b', backgroundColor: t.rRedirect },
-          info:     { color: '#873AE3', backgroundColor: t.rInfo },
+          info:     { color: primaryColor, backgroundColor: t.rInfo },
         },
         http: {
-          get: '#22d3a5', post: '#873AE3', put: '#f59e0b',
-          options: '#6366f1', patch: '#3b82f6', delete: '#ef4444',
-          basic: '#9ca3af', link: '#873AE3', head: '#6366f1',
+          get: '#10b981', post: primaryColor, put: '#f59e0b',
+          options: '#71717a', patch: '#52525b', delete: '#ef4444',
+          basic: '#a1a1aa', link: primaryColor, head: '#71717a',
         },
       },
       schema: {
@@ -278,11 +282,11 @@ export default function DocsPage() {
           </NavLink>
           <span style={{ color: t.sep }} className="select-none px-1">/</span>
           <span
-            className="text-sm font-medium px-2 py-0.5 rounded-md"
+            className="text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider"
             style={{
-              background: 'linear-gradient(135deg,rgba(135,58,227,.18) 0%,rgba(17,70,242,.18) 100%)',
-              color: '#873AE3',
-              border: '1px solid rgba(135,58,227,.30)',
+              background: isDark ? '#18181b' : '#f4f4f5',
+              color: isDark ? '#fafafa' : '#000000',
+              border: `1px solid ${isDark ? '#27272a' : '#e4e4e7'}`,
             }}
           >
             API Reference
@@ -297,7 +301,7 @@ export default function DocsPage() {
             <div
               className="absolute inset-0 rounded-full animate-spin"
               style={{
-                background: 'conic-gradient(from 0deg,#873AE3,#1146F2,#873AE3)',
+                background: `conic-gradient(from 0deg, ${isDark ? '#ffffff' : '#000000'}, transparent)`,
                 mask: 'radial-gradient(farthest-side,transparent calc(100% - 3px),black calc(100% - 3px))',
                 WebkitMask: 'radial-gradient(farthest-side,transparent calc(100% - 3px),black calc(100% - 3px))',
               }}
@@ -306,7 +310,7 @@ export default function DocsPage() {
           <div className="text-center">
             <p className="font-medium" style={{ color: t.textPrimary }}>Loading API Reference</p>
             <p className="text-sm mt-1" style={{ color: t.textSecondary }}>
-              Fetching spec from <code className="text-[#873AE3] text-xs">{ApiDocsUrl}</code>
+              Fetching spec from <code className="font-mono text-xs" style={{ color: isDark ? '#ffffff' : '#000000' }}>{ApiDocsUrl}</code>
             </p>
           </div>
         </div>
@@ -314,33 +318,30 @@ export default function DocsPage() {
 
       {/* ── Error overlay ────────────────────────────────────────────────────── */}
       {status === 'error' && (
-        <div className="flex-1 flex flex-col items-center justify-center gap-5 py-24 px-4">
-          <div
-            className="w-14 h-14 rounded-2xl flex items-center justify-center"
-            style={{ background: 'rgba(239,68,68,.10)', border: '1px solid rgba(239,68,68,.25)' }}
-          >
-            <svg className="w-7 h-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-            </svg>
-          </div>
-          <div className="text-center max-w-md">
-            <p className="font-semibold text-lg" style={{ color: t.textPrimary }}>
-              Unable to load API Reference
-            </p>
-            <p className="text-sm mt-2" style={{ color: t.textSecondary }}>{errorMsg}</p>
-            <p className="text-xs mt-3" style={{ color: t.sep }}>
-              Make sure the gateway at{' '}
-              <code className="text-[#873AE3]">{GatewayBaseUrl}</code> is reachable.
-            </p>
-          </div>
-          <button
-            onClick={() => { setErrorMsg(''); initRedoc(isDark); }}
-            className="mt-2 px-5 py-2 rounded-lg text-sm font-medium text-white"
-            style={{ background: 'linear-gradient(135deg,#873AE3 0%,#1146F2 100%)' }}
-          >
-            Retry
-          </button>
+        <div className="flex-1">
+          <ErrorHero 
+            tag="Documentation Error"
+            title={<>Spec <br className="md:hidden"/> Offline.</>}
+            description={
+              <>
+                Unable to load the API Reference from <code className="font-mono text-xs opacity-80" style={{ color: isDark ? '#ffffff' : '#000000' }}>{GatewayBaseUrl}</code>. 
+                {errorMsg && <div className="mt-2 text-xs italic opacity-60">{errorMsg}</div>}
+              </>
+            }
+            action={
+              <button
+                onClick={() => { setErrorMsg(''); initRedoc(isDark); }}
+                className="px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 hover:scale-105 active:scale-95"
+                style={{ 
+                  background: isDark ? '#ffffff' : '#000000',
+                  color: isDark ? '#000000' : '#ffffff',
+                  boxShadow: isDark ? '0 0 20px rgba(255,255,255,0.1)' : '0 0 20px rgba(0,0,0,0.1)'
+                }}
+              >
+                RETRY CONNECTION
+              </button>
+            }
+          />
         </div>
       )}
 

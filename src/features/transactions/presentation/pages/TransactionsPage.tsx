@@ -23,6 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTransactions } from "../hooks/use-transactions";
+import NotFoundHero from "@/core/components/notFound/Hero";
 
 export default function TransactionsPage() {
   const { transactions, loading } = useTransactions();
@@ -75,6 +76,17 @@ export default function TransactionsPage() {
                     </TableCell>
                   </TableRow>
                 ))
+              ) : transactions.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="p-0">
+                    <NotFoundHero 
+                      title="No Transactions Found" 
+                      description="Our network nodes haven't detected any verified operations yet. Start by integrating the Sentra SDK." 
+                      icon="Empty" 
+                      showButton={false} 
+                    />
+                  </TableCell>
+                </TableRow>
               ) : transactions.map((tx) => (
                 <TableRow key={tx.id} className="hover:bg-muted/50">
                   <TableCell className="pl-6">

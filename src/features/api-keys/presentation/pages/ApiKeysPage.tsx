@@ -39,6 +39,7 @@ import {
 import { useApiKeys } from "../hooks/use-api-keys";
 import type { ApiKey } from "../../domain/entities/api-key";
 import PrimaryButton from "@/core/components/primaryButton";
+import NotFoundHero from "@/core/components/notFound/Hero";
 
 export default function ApiKeysPage() {
   const { keys, loading, isCreating, isDeleting, createKey, deleteKey } = useApiKeys();
@@ -174,8 +175,13 @@ export default function ApiKeysPage() {
                   ))
                 ) : keys.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
-                      No API keys found. Create one to get started.
+                    <TableCell colSpan={5} className="p-0">
+                      <NotFoundHero 
+                        title="No API Keys Found" 
+                        description="You need an API key to authenticate requests to the Sentra Nexus. Generate your first key to start securing your platform." 
+                        icon="Key" 
+                        showButton={false} 
+                      />
                     </TableCell>
                   </TableRow>
                 ) : (

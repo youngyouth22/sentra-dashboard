@@ -17,6 +17,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import Button from "@/core/components/button";
 import { useAnalytics } from "../hooks/use-analytics";
+import NotFoundHero from "@/core/components/notFound/Hero";
 
 export default function DashboardPage() {
   const { usage, loading } = useAnalytics();
@@ -166,9 +167,13 @@ export default function DashboardPage() {
                     </div>
                   ))
                 ) : usage?.lastRequests.length === 0 ? (
-                  <div className="py-20 text-center flex flex-col items-center opacity-50">
-                    <Activity className="h-10 w-10 mb-2" />
-                    <p className="text-sm">No activity recorded yet</p>
+                  <div className="py-2 border rounded-xl overflow-hidden bg-primary/[0.01]">
+                    <NotFoundHero 
+                      title="No Activity" 
+                      description="Waiting for live signals from the Sentra Nexus." 
+                      icon="Nexus" 
+                      showButton={false} 
+                    />
                   </div>
                 ) : (
                   usage?.lastRequests.slice(0, 10).map((req) => (

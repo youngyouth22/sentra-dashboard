@@ -7,24 +7,24 @@ import Builder from '@/assets/images/builder.png';
 export default function Faq() {
     const accordionData: AccordionData[] = [
         {
-            title: "What services does your digital marketing agency offer?",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            title: "What is Silent Verification?",
+            content: "Silent Verification allows you to authenticate users without requiring OTP codes or passwords. Sentra communicates directly with the user's mobile carrier to verify their identity via encrypted network signals, providing a seamless experience."
         },
         {
-            title: "How can digital marketing benefit my business?",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            title: "How does Sentra leverage the Nokia Network-as-Code Nexus?",
+            content: "We use the Nokia Nexus to access real-time network-level signals from global carriers. This allows us to detect anomalies like SIM swapping, location spoofing, and device tampering at the source, rather than relying on app-level data."
         },
         {
-            title: "How long does it take to see results?",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            title: "Is Sentra compliant with data protection regulations?",
+            content: "Yes. Sentra is designed with privacy-first principles. We use encrypted signals and do not store sensitive user data. We are fully compliant with GDPR and other local fintech security standards."
         },
         {
-            title: "Do you offer customized marketing strategies?",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            title: "Can I integrate Sentra with my existing authentication system?",
+            content: "Absolutely. Sentra is designed to be developer-friendly. You can integrate our API or SDK into your existing Auth0, Firebase, or custom authentication flows with just a few lines of code."
         },
         {
-            title: "What industries do you specialize in?",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            title: "What is a Trust Score?",
+            content: "A Trust Score is an AI-generated value from 0 to 100 that represents the risk level of a transaction. It factors in network signals, device integrity, and historical behavior to help you automate blocking or additional verification steps."
         }
     ];
     return (
@@ -51,10 +51,10 @@ export default function Faq() {
                 <div className="hidden lg:flex flex-col">
                     <div className="flex justify-between items-end self-stretch">
                         <div>
-                            <Typography color="#8D8D8D" noDarkMode>Web Design</Typography>
-                            <Typography color="#070707" weight={600} className="mt-[4px]">CHARLOTTE AI</Typography>
+                            <Typography color="#8D8D8D" noDarkMode>Sentra Nexus</Typography>
+                            <Typography color="#070707" weight={600} className="mt-[4px]">INTEGRATION GUIDE</Typography>
                         </div>
-                        <Typography color="#070707">24 Feb</Typography>
+                        <Typography color="#070707">v1.2.0</Typography>
                     </div>
                     <img src={Builder} alt="Builder" className="w-[400px] rounded-[16px] mt-[12px]" />
                 </div>

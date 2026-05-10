@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useWebhooks } from "../hooks/use-webhooks";
 import PrimaryButton from "@/core/components/primaryButton";
+import NotFoundHero from "@/core/components/notFound/Hero";
 
 const mockLogs = [
   { id: 'wh_log_1', event: 'trust.score_updated', url: 'https://api.myapp.com/webhooks', status: 200, time: '2 mins ago' },
@@ -87,7 +88,7 @@ export default function WebhooksPage() {
                 <PrimaryButton 
                   type="submit" 
                   size="sm" 
-                  className="h-9 w-auto"
+                  className="h-9 w-auto max-w-[200px]"
                   loading={isCreating}
                   disabled={!newUrl || isCreating}
                 >
@@ -120,8 +121,13 @@ export default function WebhooksPage() {
                     </TableRow>
                   ) : endpoints.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={4} className="h-24 text-center text-muted-foreground text-sm">
-                        No webhooks configured.
+                      <TableCell colSpan={4} className="p-0">
+                        <NotFoundHero 
+                          title="No Webhooks" 
+                          description="Connect your backend to real-time network events. Register your first webhook endpoint above." 
+                          icon="Webhook" 
+                          showButton={false} 
+                        />
                       </TableCell>
                     </TableRow>
                   ) : (

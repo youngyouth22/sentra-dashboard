@@ -15,12 +15,13 @@ import {
   Activity, 
   Bell, 
   Settings,
-  Shield
 } from "lucide-react"
 import { NavMain } from "./NavMain"
 import { NavSecondary } from "./NavSecondary"
 import { NavUser } from "./NavUser"
 import { RoutePaths } from "@/core/routes/route-paths"
+import LogoBlack from "@/assets/images/sentra-icon.svg";
+import Image from '@/core/components/image';
 
 const data = {
   user: {
@@ -79,8 +80,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Link to="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Shield className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg  ">
+                  
+                  <Image src={LogoBlack} alt="Sentra Logo" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">SENTRA</span>

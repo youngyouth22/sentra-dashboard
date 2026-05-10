@@ -6,6 +6,7 @@ import Navigation from "@/core/components/layouts/Navigation";
 import Logo from '@/assets/images/Logo.svg';
 import Switch from "@/core/components/switch";
 import Icons from "@/core/components/icon";
+import { RoutePaths } from "@/core/routes/route-paths";
 
 interface HeaderProps {
     mobileOpen: boolean;
@@ -66,13 +67,13 @@ export default function Header({ mobileOpen = false, onOpenMobileNav }: HeaderPr
             ${hasScrolled ? "bg-[#070707]" : ""}
         `}>
             <NavLink to="/" className="w-[40%] lg:w-[15%] cursor-pointer">
-                <Image src={Logo} alt="Logo" />
+                <Image src={Logo} alt="Sentra Logo" />
             </NavLink>
             <Navigation />
             <div className="hidden lg:flex justify-between items-center gap-[32px]">
                 <Switch />
-                <NavLink to="/contact" className="flex justify-between items-center gap-[8px] text-white cursor-pointer">
-                    CONTACT US <Icons name="arrowRight" className="w-5" />
+                <NavLink to={RoutePaths.AUTH} className="flex justify-between items-center gap-[8px] text-white cursor-pointer">
+                    START SECURING <Icons name="arrowRight" className="w-5" />
                 </NavLink>
             </div>
             <div className="flex items-center gap-[24px] lg:hidden">

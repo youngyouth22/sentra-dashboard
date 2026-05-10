@@ -11,6 +11,7 @@ const SignupPage = lazy(() => import('@/features/auth/presentation/pages/signup/
 const OtpPage = lazy(() => import('@/features/auth/presentation/pages/otp/OtpPage'));
 const ForgotPasswordPage = lazy(() => import('@/features/auth/presentation/pages/forgot-password/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('@/features/auth/presentation/pages/reset-password/ResetPasswordPage'));
+const NotFoundPage = lazy(() => import('@/core/components/notFound/NotFoundPage'));
 
 /**
  * Public Routes
@@ -57,6 +58,6 @@ export const PublicRoutes: RouteObject[] = [
   },
   {
     path: RoutePaths.NOT_FOUND,
-    element: createElement(Navigate, { to: RoutePaths.HOME, replace: true }),
+    element: createElement(NotFoundPage),
   },
 ];

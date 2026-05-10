@@ -1,7 +1,7 @@
 import { type RouteObject } from 'react-router-dom';
 import { PublicRoutes } from './public';
 import { PrivateRoutes } from './private';
-import ErrorPage from '@/components/shared/ErrorPage';
+import ErrorPage from '@/core/components/errorPage/ErrorPage';
 
 /**
  * Main Routes Registry

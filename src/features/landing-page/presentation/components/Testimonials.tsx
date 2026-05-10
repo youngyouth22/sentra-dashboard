@@ -14,25 +14,25 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Amanda Holly",
-    role: "Nursing Assistant",
+    name: "Idriss Monthe",
+    role: "CEO @Moneco",
     message:
-      "Our business experienced a significant transformation thanks to this team’s digital marketing expertise. They delivered tangible improvements in our online visibility.",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      "Sentra allowed us to eliminate OTP friction while increasing our fraud detection by 95% in emerging markets. It's the infrastructure we've been waiting for.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
   },
   {
-    name: "John Doe",
-    role: "Marketing Manager",
+    name: "Sarah Chen",
+    role: "Head of Risk @SecurePay",
     message:
-      "Their innovative strategies and attention to detail made a huge difference in our campaign performance. Truly outstanding work!",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      "The real-time network signals provided by the Sentra Nexus are a game changer. We can now detect SIM swapping attempts before the transaction even hits our gateway.",
+    avatar: "https://randomuser.me/api/portraits/women/32.jpg",
   },
   {
-    name: "Lina Kusuma",
-    role: "Founder @StartupID",
+    name: "David Miller",
+    role: "CTO @NeoBank",
     message:
-      "Pelayanan cepat, profesional, dan sangat membantu bisnis kami berkembang di dunia digital.",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+      "Silent verification is exactly what the modern fintech industry needed. No more intrusive codes—just seamless, encrypted trust between the user and the network.",
+    avatar: "https://randomuser.me/api/portraits/men/68.jpg",
   },
 ];
 

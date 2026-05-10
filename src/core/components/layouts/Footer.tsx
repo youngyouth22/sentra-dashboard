@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Image from "@/core/components/image";
 import Button from "@/core/components/button";
+import { RoutePaths } from "@/core/routes/route-paths";
 
 import Logo from '@/assets/images/Logo.svg';
 import XLogo from '@/assets/images/XLogo.svg';
@@ -20,21 +21,21 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between w-full md:pr-[80px] gap-[32px] md:gap-auto">
           <div className="flex flex-col gap-[16px] w-full lg:w-[60%]">
             <div className="text-white text-[32px] md:text-[40px] font-semibold leading-[41px] md:leading-[48px]">
-              Drive Quality Leads, Maximize Growth, Convert More Customers!
+              Secure Your Fintech Future with Silent Trust.
             </div>
             <div className="text-white text-[14px]">
-              Boost your business with targeted strategies that attract high-quality leads, enhance conversions, and accelerate
+              The leading infrastructure for real-time network signals and AI-driven fraud scoring.
             </div>
           </div>
-          <NavLink to="/contact">
+          <NavLink to={RoutePaths.AUTH}>
             <Button variant="secondary">GET STARTED</Button>
           </NavLink>
         </div>
         <div className="mt-[64px] md:mt-[107px] flex flex-col lg:flex-row items-start justify-between gap-[48px]">
           <div className="flex flex-col gap-[24px] w-[70%] lg:w-[20%]">
-            <Image src={Logo} alt="Logo" className="w-[50%]" />
+            <Image src={Logo} alt="Sentra Logo" className="w-[50%]" />
             <div className="font-medium text-white leading-[24px]">
-              We Drive Real Result, More Traffic, More Leads, more Growth!
+              Silent Trust. Total Security. Network Intelligence.
             </div>
             <div className="flex items-center gap-[15px]">
               <div className="bg-[#1D1D1D] rounded-full p-[10px]">
@@ -50,13 +51,13 @@ export default function Footer() {
           </div>
           <div className="flex items-start justify-between w-full lg:w-[35%] md:gap-[100px]">
             <div>
-              <div className="text-[#8D8D8D] mb-[24px]">Main Menu</div>
+              <div className="text-[#8D8D8D] mb-[24px]">Platform</div>
               <div className="flex flex-col items-start gap-[16px] text-white">
                 <NavLink to="/about" className="cursor-pointer">About Us</NavLink>
-                <NavLink to="/portofolio" className="cursor-pointer">Portofolio</NavLink>
+                <NavLink to="/docs" className="cursor-pointer">Documentation</NavLink>
                 <NavLink to="/services" className="cursor-pointer">Services</NavLink>
                 <NavLink to="/pricing" className="cursor-pointer">Pricing</NavLink>
-                <div className="cursor-pointer">Testimonial</div>
+                <div className="cursor-pointer">Nexus Dashboard</div>
               </div>
             </div>
             <div>
@@ -71,10 +72,10 @@ export default function Footer() {
             <div>
               <div className="text-[#8D8D8D] mb-[24px]">Resources</div>
               <div className="flex flex-col items-start gap-[16px] text-white">
-                <div className="cursor-pointer">Product</div>
-                <div className="cursor-pointer">Envato</div>
-                <div className="cursor-pointer">UI8</div>
-                <div className="cursor-pointer">Awwwards</div>
+                <div className="cursor-pointer">API Reference</div>
+                <div className="cursor-pointer">Security Audits</div>
+                <div className="cursor-pointer">Network-as-Code</div>
+                <div className="cursor-pointer">Nokia Nexus</div>
               </div>
             </div>
           </div>
@@ -83,10 +84,10 @@ export default function Footer() {
           <div className="flex items-center gap-[8px]">
             <Icons name="copyRight" className="w-5" />
             <div className="text-white font-medium">
-              2025 Adverza, All right reserved
+              2026 Sentra Nexus, All rights reserved
             </div>
           </div>
-          <div className="flex justify-between items-center gap-[8px] text-white cursor-pointer">CONTACT SUPPORT <Icons name="arrowRight" className="w-5" /></div>
+          <div className="flex justify-between items-center gap-[8px] text-white cursor-pointer">SECURITY TEAM <Icons name="arrowRight" className="w-5" /></div>
         </div>
       </div>
     </div>

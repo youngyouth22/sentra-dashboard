@@ -5,6 +5,7 @@ import Icons from "@/core/components/icon";
 import Tag from "@/core/components/Tag"
 import Typography from "@/core/typography"
 import Toggle from "@/core/components/toggle"
+import { RoutePaths } from "@/core/routes/route-paths";
 
 export default function PricingSection() {
     const [selected, setSelected] = useState<string>('Monthly');
@@ -20,12 +21,10 @@ export default function PricingSection() {
             <div className="flex flex-col items-center gap-[40px]">
                 <div className="flex flex-col items-center gap-[24px]">
                     <Typography as="div" size={48} sizeMobile={32} weight={700} lineHeight={56} lineHeightMobile={41.6} className="w-full lg:w-[65%] text-center">
-                        Upgrade Today – Unlock More
-                        Features, More Power, More Growth!
+                        Scalable Trust Infrastructure for Any Fintech
                     </Typography>
                     <Typography as="div" size={14} lineHeight={24} className="text-center w-full md:w-[80%] lg:w-[40%]">
-                        Investing in your growth has never been easier. Discover our flexible pricing
-                        plans  and unlock a world of possibilities.
+                        Choose the plan that fits your scale. From early-stage startups to global financial institutions, Sentra provides the security infrastructure you need.
                     </Typography>
                 </div>
             </div>
@@ -33,96 +32,84 @@ export default function PricingSection() {
             <div className="bg-[#EEE] dark:bg-[#1D1D1D] flex flex-col lg:flex-row items-start gap-[24px] p-[24px] rounded-[20px] w-full md:w-[75%]">
                 <div className="w-full lg:w-[50%] rounded-[12px] p-[24px] cursor-pointer hover:bg-white group hover:dark:bg-[#393939] transition-all duration-300">
                     <Typography size={32} weight={600} lineHeight={40}>
-                        Standard Plan
+                        Developer Plan
                     </Typography>
                     <Typography as="div" size={40} weight={600} lineHeight={48} className="mt-[24px] flex items-center gap-[8px]">
-                        $40 {selected === "Monthly" && (<Typography as="span" size={14}>/Month</Typography>)}
+                        $0 {selected === "Monthly" && (<Typography as="span" size={14}>/Month</Typography>)}
                     </Typography>
                     <Typography as="div" size={14} lineHeight={24} className="mt-[12px]">
-                        Perfect for individuals and small businesses looking to establish their online presence.
+                        Perfect for startups and developers building the next generation of secure fintech apps.
                     </Typography>
-                    <NavLink to={"/contact"}>
+                    <NavLink to={RoutePaths.AUTH}>
                         <div className="my-[32px] rounded-full border border-[#1D1D1D] dark:border-white dark:text-white py-[18px] flex items-center justify-center group-hover:bg-[#1146F2] group-hover:border-[#1146F2] group-hover:text-white group-hover:dark:text-[#070707]">
-                            <div>GET STARTED</div>
+                            <div>GET STARTED FOR FREE</div>
                         </div>
                     </NavLink>
                     <div className="flex flex-col items-start gap-[12px] dark:text-white">
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Full Access to All Features
+                            1,000 Silent Verifications / mo
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Higher Limits & Scalability
+                            Basic AI Trust Scores
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Priority Customer Support
+                            Community Support
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Advanced Analytics & Insights
+                            Core API Access
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Seamless Integrations
-                        </div>
-                        <div className="flex items-center gap-[16px]">
-                            <Icons name="arrowUpRight" className="w-5" />
-                            Exclusive Early Access to New Features
-                        </div>
-                        <div className="flex items-center gap-[16px]">
-                            <Icons name="arrowUpRight" className="w-5" />
-                            Enhanced Security & Reliability
+                            Standard Webhooks
                         </div>
                     </div>
                 </div>
                 <div className="w-full lg:w-[50%] rounded-[12px] p-[24px] relative cursor-pointer hover:bg-white hover:dark:bg-[#393939] group transition-all duration-300">
                     <div className="absolute top-0 right-2 lg:right-10 p-[8px] text-[14px] text-white bg-linear-to-r from-blue-500 to-purple-500 rounded-b-[8px]">
-                        Best Value!
+                        Most Popular
                     </div>
                     <Typography size={32} weight={600} lineHeight={40}>
-                        Premium Plan
+                        Pro Plan
                     </Typography>
                     <Typography as="div" size={40} weight={600} lineHeight={48} className="mt-[24px] flex items-center gap-[8px]">
-                        $80 {selected === "Monthly" && (<Typography as="span" size={14}>/Month</Typography>)}
+                        $299 {selected === "Monthly" && (<Typography as="span" size={14}>/Month</Typography>)}
                     </Typography>
                     <Typography as="div" size={14} lineHeight={24} className="mt-[12px]">
-                        Perfect for individuals and small businesses looking to establish their online presence.
+                        Advanced security for scaling platforms requiring high-frequency signals and full AI scoring.
                     </Typography>
-                    <NavLink to={"/contact"}>
+                    <NavLink to={RoutePaths.AUTH}>
                         <div className="my-[32px] rounded-full border border-[#1D1D1D] dark:border-white dark:text-white py-[18px] flex items-center justify-center group-hover:bg-[#1146F2] group-hover:border-[#1146F2] group-hover:text-white group-hover:dark:text-[#070707]">
-                            <div>GET STARTED</div>
+                            <div>START PRO TRIAL</div>
                         </div>
                     </NavLink>
                     <div className="flex flex-col items-start gap-[12px] dark:text-white">
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Full Access to All Features
+                            Unlimited Silent Verifications
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Higher Limits & Scalability
+                            Advanced AI Trust Scores
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Priority Customer Support
+                            Priority 24/7 Support
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Advanced Analytics & Insights
+                            Full Network-as-Code Nexus
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Seamless Integrations
+                            Custom Blocking Thresholds
                         </div>
                         <div className="flex items-center gap-[16px]">
                             <Icons name="arrowUpRight" className="w-5" />
-                            Exclusive Early Access to New Features
-                        </div>
-                        <div className="flex items-center gap-[16px]">
-                            <Icons name="arrowUpRight" className="w-5" />
-                            Enhanced Security & Reliability
+                            Real-time Event Streaming
                         </div>
                     </div>
                 </div>

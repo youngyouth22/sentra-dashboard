@@ -46,7 +46,7 @@ export default function LogoPartners() {
 
     return (
         <div className="bg-white dark:bg-[#070707] py-[48px] md:py-[60px] flex flex-col items-center gap-[32px]">
-            <Typography as="div" size={16} weight={500} className="text-center px-[40px]">Adverza is used by over 69.000+ companies across the globe</Typography>
+            <Typography as="div" size={16} weight={500} className="text-center px-[40px]">Sentra is the trusted security infrastructure for leading fintechs worldwide</Typography>
             <div className="overflow-hidden w-full" ref={sliderRef}>
                 <div className="flex items-center gap-20 slider-track">
                     {[...images, ...images].map((image, index) => (

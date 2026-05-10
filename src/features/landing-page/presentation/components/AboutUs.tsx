@@ -12,7 +12,7 @@ import Target from '@/assets/images/target.png';
 
 export default function AboutUs() {
     const { theme } = useTheme();
-    const descAboutUs = "We are a digital marketing agency committed to delivering innovative strategies that elevate your brand, increase engagement, and drive measurable growth. With data-driven solutions and creative expertise.";
+    const descAboutUs = "Sentra is the backbone of modern fintech security. By leveraging collective intelligence and real-time network signals, we eliminate the tradeoff between security and user experience. Our infrastructure connects directly to global carrier networks to provide silent authentication and AI-driven trust scoring.";
 
     const descAboutUsRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +46,7 @@ export default function AboutUs() {
     return (
         <div className="bg-white dark:bg-[#070707] w-full px-[20px] md:px-[72px] py-[48px] md:py-[80px] flex flex-col md:flex-row justify-between items-start gap-[24px]">
             <Tag>
-                <Typography size={14} sizeMobile={12} weight={500}>About Us</Typography>
+                <Typography size={14} sizeMobile={12} weight={500}>Our Mission</Typography>
             </Tag>
             <div className="w-full md:w-[65%] flex flex-col gap-[48px] md:gap-[80px]">
                 <div ref={descAboutUsRef} className="text-[28px] md:text-[40px] font-semibold leading-[36.8px] md:leading-[48px]" style={{ whiteSpace: "pre-wrap" }}>
@@ -61,10 +61,10 @@ export default function AboutUs() {
                         <img src={Group} alt="group" className="w-12" />
                         <div>
                             <Typography size={20} weight={700} lineHeight={32}>
-                                ROI Increased by 300%
+                                Carrier-Level Data
                             </Typography>
                             <Typography sizeMobile={14} className="mt-[4px]">
-                                Data-backed performance marketing
+                                Real-time signals from global mobile networks.
                             </Typography>
                         </div>
                     </div>
@@ -72,10 +72,10 @@ export default function AboutUs() {
                         <img src={Cash} alt="Cash" className="w-12" />
                         <div>
                             <Typography size={20} weight={700} lineHeight={32}>
-                                1M+ Leads Generated
+                                AI Trust Engine
                             </Typography>
                             <Typography className="mt-[4px]">
-                                High-quality prospects for your business
+                                Advanced scoring for every transaction.
                             </Typography>
                         </div>
                     </div>
@@ -83,10 +83,10 @@ export default function AboutUs() {
                         <img src={Target} alt="Target" className="w-12" />
                         <div>
                             <Typography size={20} weight={700} lineHeight={32}>
-                                10+ Years of Experience
+                                Zero-Friction UX
                             </Typography>
                             <Typography className="mt-[4px]">
-                                A decade of driving digital success.
+                                Silent authentication without OTPs.
                             </Typography>
                         </div>
                     </div>
